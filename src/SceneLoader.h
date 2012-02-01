@@ -2,7 +2,7 @@
 #define SCENE_LOADER_H
 #pragma once
 
-#include "pugixml.hpp"
+#include "3rdParty/pugixml/pugixml.hpp"
 
 #include <Scene/Scene.hpp>
 #include <Scene/Node.hpp>
@@ -13,25 +13,27 @@ using namespace pugi;
 using namespace std;
 using namespace dt;
 
-#define SCENE "scene"
-#define NODES "nodes"
-#define NAME "name"
-#define POS "position"
-#define X "x"
-#define Y "y"
-#define Z "z"
-#define ROT "rotation"
-#define QW "qw"
-#define QX "qx"
-#define QY "qy"
-#define QZ "qz"
-#define SCALE "scale"
-#define MESH "entity"
-#define MESH_HANDLE "meshFile"
-#define CAST_SHADOWS "castShadows"
-#define MATERIAL "materialName"
-#define CAMERA "camera"
-#define LIGHT "light"
+#define SL_SCENE "scene"
+#define SL_NODES "nodes"
+#define SL_NAME "name"
+#define SL_POS "position"
+#define SL_X "x"
+#define SL_Y "y"
+#define SL_Z "z"
+#define SL_ROT "rotation"
+#define SL_QW "qw"
+#define SL_QX "qx"
+#define SL_QY "qy"
+#define SL_QZ "qz"
+#define SL_SCALE "scale"
+#define SL_MESH "node"
+#define SL_MESH_HANDLE "meshFile"
+#define SL_CAST_SHADOWS "castShadows"
+#define SL_MATERIAL "materialName"
+#define SL_CAMERA "camera"
+#define SL_LIGHT "light"
+#define SL_DIRECTION "directionVector"
+#define SL_ENTITY "entity"
 
 class SceneLoader 
 {
@@ -44,7 +46,11 @@ public:
     static Scene* LoadScene(string path);
 
 protected:
-    static void _LoadNode(Scene* scene, const xml_node& node);
+    static void _LoadMesh(Scene* scene, const xml_node& node);
+
+    static void _LoadLight(Scene* scene, const xml_node& node);
+
+    static void _LoadCamera(Scene* scene, const xml_node& node);
 };
 
 #endif
